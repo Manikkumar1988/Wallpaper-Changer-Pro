@@ -9,7 +9,7 @@ dependencies:
   override:
     - (echo "Downloading Android SDK v19 now!")
     - (source environmentSetup.sh && getAndroidSDK)
-    - (cd ./gradlew)
+    - (cd Wallpaper-Changer-Pro/$CIRCLE_BUILD_NUM &&  ./gradlew)
 
 test:
   pre:
@@ -19,6 +19,6 @@ test:
   override:
     - (echo "Running JUnit tests!")
     - adb shell input keyevent 82
-    - (cd ./gradlew connectedAndroidTest)
-    - cp -r /app/build/reports/androidTests/connected $CIRCLE_ARTIFACTS
-    - cp -r /app/build/outputs/apk $CIRCLE_ARTIFACTS
+    - (cd Wallpaper-Changer-Pro/$CIRCLE_BUILD_NUM./gradlew connectedAndroidTest)
+    - cp -r Wallpaper-Changer-Pro/$CIRCLE_BUILD_NUM/app/build/reports/androidTests/connected $CIRCLE_ARTIFACTS
+    - cp -r Wallpaper-Changer-Pro/$CIRCLE_BUILD_NUM/app/build/outputs/apk $CIRCLE_ARTIFACTS
