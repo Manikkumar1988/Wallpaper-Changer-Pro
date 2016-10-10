@@ -19,6 +19,6 @@ test:
   override:
     - (echo "Running JUnit tests!")
     - adb shell input keyevent 82
-    - (cd WritersChallenge && ./gradlew connectedAndroidTest)
-    - cp -r WritersChallenge/app/build/reports/androidTests/connected $CIRCLE_ARTIFACTS
-    - cp -r WritersChallenge/app/build/outputs/apk $CIRCLE_ARTIFACTS
+    - (cd Wallpaper-Changer-Pro && ./gradlew connectedAndroidTest)
+    - cp -r Wallpaper-Changer-Pro/app/build/reports/androidTests/connected $CIRCLE_ARTIFACTS
+    - cp -r Wallpaper-Changer-Pro/app/build/outputs/apk $CIRCLE_ARTIFACTS
