@@ -9,7 +9,7 @@ dependencies:
   override:
     - (echo "Downloading Android SDK v19 now!")
     - (source environmentSetup.sh && getAndroidSDK)
-    - (cd WritersChallenge && ./gradlew)
+    - (cd Wallpaper-Changer-Pro && ./gradlew)
 
 test:
   pre:
