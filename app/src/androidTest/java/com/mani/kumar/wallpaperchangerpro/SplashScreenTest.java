@@ -22,6 +22,7 @@ package com.mani.kumar.wallpaperchangerpro;
         import static android.support.test.espresso.intent.Intents.intended;
         import static android.support.test.espresso.intent.Intents.intending;
         import static android.support.test.espresso.intent.matcher.IntentMatchers.hasComponent;
+        import static android.support.test.espresso.matcher.ViewMatchers.assertThat;
         import static android.support.test.espresso.matcher.ViewMatchers.withId;
         import static android.support.test.espresso.matcher.ViewMatchers.withText;
 
@@ -55,44 +56,8 @@ public class SplashScreenTest  {
     }
 
     @Test
-    public void viewSplashFirstTime_NavigateToTutorialAfter1000ms() throws InterruptedException {
-
-        activityTestRule.launchActivity(null);
-        IdlingResource idlingResource = new ElapsedTimeIdlingResource(splashScreenWaitingTime);
-        Espresso.registerIdlingResources(idlingResource);
-
-        intended(hasComponent(GalleryActivity.class.getName()));
-
-        Espresso.unregisterIdlingResources(idlingResource);
-    }
-
-    @Test
-    public void viewSplashScreenSecondTime_NavigateToListBooksAfter1000ms() throws InterruptedException {
-
-        activityTestRule.launchActivity(null);
-        IdlingResource idlingResource = new ElapsedTimeIdlingResource(splashScreenWaitingTime);
-        Espresso.registerIdlingResources(idlingResource);
-
-
-        intended(hasComponent(GalleryActivity.class.getName()));
-
-        Espresso.unregisterIdlingResources(idlingResource);
-
-    }
-
-    @Test
-    public void viewSplashScreenFinish_StartListBooks(){
-
-        activityTestRule.launchActivity(null);
-        IdlingResource idlingResource = new ElapsedTimeIdlingResource(splashScreenWaitingTime);
-        Espresso.registerIdlingResources(idlingResource);
-
-        Instrumentation.ActivityResult result = new Instrumentation.ActivityResult(Activity.RESULT_OK, null);
-
-        intending(hasComponent(GalleryActivity.class.getName())).respondWith(result);
-
-
-        Espresso.unregisterIdlingResources(idlingResource);
+    public void sampleTest() {
+        hasComponent(SplashActivity.class.getName());
     }
 
 }

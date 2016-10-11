@@ -12,13 +12,13 @@ public class SplashActivity extends AppCompatActivity {
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        new Handler().postDelayed(new Runnable() {
+        new Handler().post(new Runnable() {
             @Override
             public void run() {
                 Intent intent = new Intent(getApplicationContext(), GalleryActivity.class);
                 startActivity(intent);
                 finish();
             }
-        },10000);
+        });
     }
 }
