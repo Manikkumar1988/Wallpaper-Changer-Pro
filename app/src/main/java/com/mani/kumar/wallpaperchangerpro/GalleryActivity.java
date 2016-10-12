@@ -3,6 +3,7 @@ package com.mani.kumar.wallpaperchangerpro;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
+import android.util.Log;
 import android.view.View;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
@@ -13,8 +14,19 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 
+import com.mani.kumar.wallpaperchangerpro.model.Photo;
+import com.mani.kumar.wallpaperchangerpro.network.UnSplashRetrofit;
+import com.mani.kumar.wallpaperchangerpro.network.UnSplashService;
+import com.mani.kumar.wallpaperchangerpro.util.AppContstants;
+
+import java.util.List;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+
 public class GalleryActivity extends AppCompatActivity
-        implements NavigationView.OnNavigationItemSelectedListener {
+        implements NavigationView.OnNavigationItemSelectedListener, Callback<List<Photo>> {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,6 +52,11 @@ public class GalleryActivity extends AppCompatActivity
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
+
+        UnSplashRetrofit unSplashRetrofit = new UnSplashRetrofit();
+        Call<List<Photo>> photoList = unSplashRetrofit.getRetrofit().listRepos("1", AppContstants.UNSPLASH_ID);
+        photoList.enqueue(this);
+
     }
 
     @Override
@@ -97,5 +114,17 @@ public class GalleryActivity extends AppCompatActivity
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
         return true;
+    }
+
+    @Override
+    public void onResponse(Call<List<Photo>> call, Response<List<Photo>> response) {
+        Log.d("321TEST123","Size: "+response.body().size());
+        Log.d("321TEST123","Size: "+response.body().get(0));
+
+    }
+
+    @Override
+    public void onFailure(Call<List<Photo>> call, Throwable t) {
+
     }
 }
